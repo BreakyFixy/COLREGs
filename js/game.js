@@ -69,16 +69,22 @@ function startGame() {
   document.getElementById('scenarioDescription').style.display = 'none';
   document.getElementById('gameCanvas').style.display = 'block';
 
-  // Initialize the game canvas with the scenario
+  // Initialize the game canvas
   const canvas = document.getElementById('gameCanvas');
   const ctx = canvas.getContext('2d');
 
   // Clear canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Draw player vessel
+  // Draw sea background
+  ctx.fillStyle = '#87CEEB'; // Light blue for the sea
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Draw player vessel (blue rectangle)
   ctx.fillStyle = 'blue';
-  ctx.fillRect(380, 500, 40, 60); // Player vessel centered near bottom
+  ctx.fillRect(380, 500, 40, 60);
+  ctx.fillStyle = 'white';
+  ctx.fillText('Player Ship', 385, 495);
 
   // Draw other vessels dynamically
   const vessels = document.getElementById('vessels').value;
@@ -87,5 +93,12 @@ function startGame() {
     const y = Math.random() * 300; // Random y position in upper half
     ctx.fillStyle = 'red';
     ctx.fillRect(x, y, 40, 60);
+    ctx.fillStyle = 'white';
+    ctx.fillText('Other Vessel', x + 5, y - 5);
   }
+
+  // Optionally, add buoys or obstacles
+  ctx.fillStyle = 'green';
+  ctx.fillRect(200, 300, 20, 20); // Example buoy
+  ctx.fillText('Buoy', 205, 295);
 }
