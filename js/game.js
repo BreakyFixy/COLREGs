@@ -1,4 +1,9 @@
 
+function updateLabel(sliderId, value, labels) {
+  const label = document.getElementById(`${sliderId}Label`);
+  label.textContent = labels[value - 1];
+}
+
 function generateScenario() {
   const terrain = document.getElementById('terrain').value;
   const vessels = document.getElementById('vessels').value;
@@ -63,4 +68,24 @@ function generateScenario() {
 function startGame() {
   document.getElementById('scenarioDescription').style.display = 'none';
   document.getElementById('gameCanvas').style.display = 'block';
+
+  // Initialize the game canvas with the scenario
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+
+  // Clear canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw player vessel
+  ctx.fillStyle = 'blue';
+  ctx.fillRect(380, 500, 40, 60); // Player vessel centered near bottom
+
+  // Draw other vessels dynamically
+  const vessels = document.getElementById('vessels').value;
+  for (let i = 0; i < vessels; i++) {
+    const x = Math.random() * (canvas.width - 40); // Random x position
+    const y = Math.random() * 300; // Random y position in upper half
+    ctx.fillStyle = 'red';
+    ctx.fillRect(x, y, 40, 60);
+  }
 }

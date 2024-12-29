@@ -11,20 +11,20 @@
   <h1 style="text-align: center;">Collision Avoidance Game</h1>
   <div id="scenarioSetup" style="text-align: center;">
     <h2>Scenario Setup</h2>
-    <label for="terrain">Terrain Complexity:</label>
-    <input type="range" id="terrain" min="1" max="5" value="1">
+    <label for="terrain">Terrain Complexity: <span id="terrainLabel">Easy</span></label>
+    <input type="range" id="terrain" min="1" max="5" value="1" oninput="updateLabel('terrain', this.value, ['Easy', 'Moderate', 'Challenging', 'Hard', 'Very Hard'])">
     <br>
-    <label for="vessels">Number of Vessels:</label>
-    <input type="range" id="vessels" min="1" max="10" value="2">
+    <label for="vessels">Number of Vessels: <span id="vesselsLabel">1</span></label>
+    <input type="range" id="vessels" min="1" max="10" value="1" oninput="updateLabel('vessels', this.value, Array.from({length: 10}, (_, i) => i + 1))">
     <br>
-    <label for="visibility">Visibility:</label>
-    <input type="range" id="visibility" min="1" max="5" value="5">
+    <label for="visibility">Visibility: <span id="visibilityLabel">Clear</span></label>
+    <input type="range" id="visibility" min="1" max="5" value="5" oninput="updateLabel('visibility', this.value, ['Clear', 'Hazy', 'Moderate Fog', 'Dense Fog', 'No Visibility'])">
     <br>
-    <label for="timeOfDay">Time of Day:</label>
-    <input type="range" id="timeOfDay" min="1" max="2" value="1">
+    <label for="timeOfDay">Time of Day: <span id="timeOfDayLabel">Day</span></label>
+    <input type="range" id="timeOfDay" min="1" max="2" value="1" oninput="updateLabel('timeOfDay', this.value, ['Day', 'Night'])">
     <br>
-    <label for="weather">Weather Conditions:</label>
-    <input type="range" id="weather" min="1" max="5" value="1">
+    <label for="weather">Weather Conditions: <span id="weatherLabel">Calm</span></label>
+    <input type="range" id="weather" min="1" max="5" value="1" oninput="updateLabel('weather', this.value, ['Calm', 'Breezy', 'Choppy', 'Rough', 'Stormy'])">
     <br><br>
     <button onclick="generateScenario()">Start Scenario</button>
   </div>
